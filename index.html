@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>AI Universe Hub</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://kit.fontawesome.com/d7f82cb681.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="style.css" /> </head>
+
+<body>
+	<header>
+		<div class="container px-6 py-10 mx-auto">
+			<h1 class="text-3xl font-semibold text-black text-center lg:text-4xl">
+			AI Universe Hub
+  </h1> </div>
+		<div class="flex justify-center">
+			<button onclick="sortByDate()" id="sortByDate" type="button" class="border border-red-500 bg-red-500 text-white font-bold rounded-lg px-4 py-3 m-3 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"> Sort by Date </button>
+		</div>
+	</header>
+	<main>
+		<section>
+			<div class="flex justify-center my-4">
+				<div id="spinner" class="hidden" role="status">
+					<svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+						<path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /> </svg> <span class="sr-only">Loading...</span> </div>
+			</div>
+		</section>
+		<section>
+			<div class="px-3 md:lg:xl:px-60 py-5">
+				<div id="data-container" class="gap-8 grid grid-cols-1 md:grid-cols-2 lg:xl:grid-cols-3 group bg-white "> </div>
+			</div>
+		</section>
+		<section>
+			<div class="flex justify-center mb-10">
+				<button id="see-more" type="button" class="border border-red-500 bg-red-500 text-white font-bold rounded-lg px-4 py-3 m-3 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"> See More </button>
+			</div>
+		</section>
+		<section>
+			<div id="modal" class=" hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+				<div class="bg-white rounded-lg  h-full lg:h-fit w-min lg:w-1/2 overflow-x-auto lg:overflow-visible">
+					<div class="relative left-4 lg:left-9 bottom-0 lg:bottom-9 flex justify-end pt-4 pr-4">
+						<button class="text-white rounded-full bg-[#EB5757] px-4 py-2" onclick="closeModal()">X</button>
+					</div>
+					<div class="grid lg:grid-cols-2 md:grid-cols-1">
+						<div class="px-1 mb-10 ml-0 lg:ml-14">
+							<div class="bg-red-100 border-2 border-red-300 rounded-lg px-1 lg:px-5 py-5 lg:w-fit">
+								<div>
+									<p id="desc" class="font-bold mb-5"></p>
+								</div>
+								<div class="flex">
+									<div id="basic" class=" rounded-lg  px-2 py-2 bg-white text-green-500 mr-2"> </div>
+									<div id="pro" class="text-orange-500 rounded-lg  px-2 py-2 bg-white mr-2"> </div>
+									<div id="enterprise" class="text-red-500 rounded-lg  px-2 py-2 bg-white"> </div>
+								</div>
+								<div class="flex justify-between">
+									<div class="my-4 ml-2">
+										<h1 class="font-bold">Features</h1>
+										<ul id="features" class="text-gray-400 text-xs list-disc ml-3 mt-1"> </ul>
+									</div>
+									<div class="my-4 mr-10">
+										<h1 class="font-bold">Integrations</h1>
+										<div>
+											<ul id="integration" class="text-gray-400 text-xs list-disc ml-3 mt-1"> </ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="w-3/4 mx-auto border-2 mb-10 rounded-xl ">
+							<div class="max-w-sm rounded-xl overflow-hidden">
+								<div class="flex justify-end">
+									<div id="accuracy" class=" lg:absolute bg-[#EB5757] rounded-md px-2 py-2  text-white font-bold w-full lg:w-max text-center"> </div>
+								</div>
+								<div id="tool-image"> </div>
+								<div id="input-output" class="px-6 py-4"> </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script src="js/app.js"></script>
+</body>
+</html>
